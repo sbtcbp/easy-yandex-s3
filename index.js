@@ -409,4 +409,42 @@ function sliceArrayToThreads(arr, threads) {
   	return sliceArr;
 }
 
+	/**
+	 * Копирование файлов
+	 * @param {String=} bucketName Имя бакета
+	 * @param {String=} FileCopySource Путь к копируемому файлу
+	 * @param {String=} DestinationKey Конечный путь
+	 * 
+	 * @returns {Promise<Object>} Результат просмотра
+	*/
+	async CopyFile(bucketName, FileCopySource, DestinationKey){
+
+		var s3 = this.s3;
+		var Bucket = this.Bucket;
+		var params = {
+			Bucket, 
+  			CopySource: "/ak-media-bucket/users/uploads/123.mp3", 
+  			Key: "/ak-media-bucket/123.mp3"
+		}
+
+		var debug = this.debug;
+		var debug_object = "copyObject"
+		if(debug) this._log("S3", debug_object, "started");
+		if(debug) this._log("S3", debug_object, params);
+
+		try {
+			var s3Promise = await new Promise(function(resolve, reject) {
+				s3.copyObject(params, function(err, data) {
+					if (err) return reject(err);
+					return resolve(data);
+				});
+			});
+			if(debug) this._log("S3", debug_object, 'done:', s3Promise);
+			return s3Promise;
+		} catch (error) {
+			if(debug) this._log("S3", debug_object,'error:', error);
+			return false;
+		}
+	}
+
 module.exports = EasyYandexS3;
