@@ -223,9 +223,9 @@ class EasyYandexS3 {
 		var s3 = this.s3;
 		var Bucket = this.Bucket;
 		var params = {
-			Bucket, 
-  			CopySource: Bucket + "/" + FileCopySource, 
-  			Key: DestinationKey
+			Bucket: destinationBucketName, 
+  			CopySource: destinationBucketName + "/" + fileSource, 
+  			Key: destinationKey
 		}
 
 		var debug = this.debug;
