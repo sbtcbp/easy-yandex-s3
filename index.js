@@ -218,14 +218,14 @@ class EasyYandexS3 {
 	 * 
 	 * @returns {Promise<Object>} Результат просмотра
 	*/
-	async CopyFile(bucketName, FileCopySource, DestinationKey){
+	async CopyFile(FileCopySource, DestinationKey){
 
 		var s3 = this.s3;
 		var Bucket = this.Bucket;
 		var params = {
 			Bucket, 
-  			CopySource: Bucket + "/users/uploads/123.mp3", 
-  			Key: "/123.mp3"
+  			CopySource: Bucket + "/" + FileCopySource, 
+  			Key: DestinationKey
 		}
 
 		var debug = this.debug;
