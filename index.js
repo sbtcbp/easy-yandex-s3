@@ -224,8 +224,8 @@ class EasyYandexS3 {
 		var Bucket = this.Bucket;
 		var params = {
 			Bucket, 
-  			CopySource: "/ak-media-bucket/users/uploads/123.mp3", 
-  			Key: "/ak-media-bucket/123.mp3"
+  			CopySource: Bucket + "/users/uploads/123.mp3", 
+  			Key: "/123.mp3"
 		}
 
 		var debug = this.debug;
